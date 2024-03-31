@@ -15,7 +15,7 @@ This project is an implementation of the classic children's game "Tic-Tac-Toe" u
 1. Clone this repository to your computer.
 2. Open the file index.html in your web browser.
 3. Play with your friends!
-4. Or simply follow the link [live page](<irynkakol.github.io/tic-tak-toe/)
+4. Or simply follow the link [live page](https://irynkakol.github.io/tic-tak-toe)
 
 ## <div align=center>Features</div>
 
