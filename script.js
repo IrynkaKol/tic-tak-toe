@@ -22,28 +22,32 @@ function renderBoard() {
 
 function handleCellClick(event) {
     const index = event.target.getAttribute('data-index');
-    if (gameBoard[index] === '' && gameActive) {
-        gameBoard[index] = currentPlayer;
-        lastClickedCellIndex = index; // оновити індекс останньої клітинки
-lastPlayer = currentPlayer; // зберегти гравця перед кліком
-        renderBoard();
-        if (checkWinner()) {
-            showModal(`${currentPlayer} wins!`);
-            gameActive = false;
-        } else if (isBoardFull()) {
-            showModal("It's a tie!");
-            gameActive = false;
-        } else {
-            currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
-            status.innerText = `Current Player: ${currentPlayer}`;
-        }
-    } else if (index === lastClickedCellIndex && gameActive) {
-        gameBoard[index] = ''; // зробити клітинку пустою, якщо на неї клікнули двічі
-currentPlayer = lastPlayer; // повернути гравця до попереднього після відміни ходу
-        renderBoard();
+    switch(true) {
+        case gameBoard[index] === '' && gameActive:
+            gameBoard[index] = currentPlayer;
+            lastClickedCellIndex = index;
+            lastPlayer = currentPlayer;
+            renderBoard();
+            if (checkWinner()) {
+                showModal(`${currentPlayer} wins!`);
+                gameActive = false;
+            } else if (isBoardFull()) {
+                showModal("It's a tie!");
+                gameActive = false;
+            } else {
+                currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+                status.innerText = `Current Player: ${currentPlayer}`;
+            }
+            break;
+        case index === lastClickedCellIndex && gameActive:
+            gameBoard[index] = '';
+            currentPlayer = lastPlayer;
+            renderBoard();
+            break;
+        default:
+            break;
     }
 }
-
 function checkWinner() {
     const winPatterns = [
         [0, 1, 2],
